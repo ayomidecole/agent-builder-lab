@@ -1,0 +1,16 @@
+{
+  "name": "agent-builder-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An engineering-first lab for learning how to build, evaluate, and deploy AI agents.",
+  "scripts": {},
+  "keywords": [
+    "agents",
+    "ai",
+    "typescript",
+    "evals"
+  ],
+  "author": "Ayomide Aremu-Cole",
+  "license": "MIT"
+}

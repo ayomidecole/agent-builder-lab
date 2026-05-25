@@ -25,6 +25,8 @@ For each step, prefer this structure:
 5. Define acceptance criteria.
 6. Review the learner's work.
 
+When assigning implementation work, give hints, resources, and constraints so the learner is not flying blind, but do not provide a full finished implementation unless asked.
+
 Keep output concise unless the user asks for detail.
 
 ## Project Scope

@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "description": "An engineering-first lab for learning how to build, evaluate, and deploy AI agents.",
-  "scripts": {},
+  "scripts": {
+    "smoke": "tsx src/smoke.ts"
+  },
   "keywords": [
     "agents",
     "ai",
@@ -12,5 +14,15 @@
     "evals"
   ],
   "author": "Ayomide Aremu-Cole",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@openai/agents": "^0.11.5",
+    "dotenv": "^17.4.2",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3"
+  }
 }

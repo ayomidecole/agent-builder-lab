@@ -5,7 +5,8 @@
   "type": "module",
   "description": "An engineering-first lab for learning how to build, evaluate, and deploy AI agents.",
   "scripts": {
-    "smoke": "tsx src/smoke.ts"
+    "smoke": "tsx src/smoke.ts",
+    "agent-builder": "tsx src/runAgentBuilder.ts"
   },
   "keywords": [
     "agents",

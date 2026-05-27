@@ -1,4 +1,5 @@
 import { Agent } from "@openai/agents"
+import classifyAgentIdea from "../tools/classifyAgentIdea.js"
 
 
 const agentBuilderV0 = new Agent({
@@ -6,6 +7,9 @@ const agentBuilderV0 = new Agent({
     instructions: `You are Agent Builder v0.
 
     Your job is to take a rough agent idea and turn it into a concise agent design brief.
+
+    Before writing the brief, use the classify_agent_idea tool to classify the rough idea.
+    Include the classification category near the top of the brief.
 
     The brief must include these sections:
 
@@ -19,7 +23,8 @@ const agentBuilderV0 = new Agent({
     8. First Implementation Step
 
     Keep the brief practical and engineering-focused.
-    Do not write implementation code yet.`
+    Do not write implementation code yet.`,
+    tools: [classifyAgentIdea]
 })
 
 export default agentBuilderV0

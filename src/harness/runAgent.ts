@@ -1,15 +1,12 @@
-import { Agent, run } from "@openai/agents"
+import { Agent, AgentOutputType, run } from "@openai/agents"
 
-type RunAgentOptions = {
-    agent: Agent
+type RunAgentOptions<TOutput extends AgentOutputType> = {
+    agent: Agent<unknown, TOutput>
     input: string
 }
 
-export async function runAgent(options: RunAgentOptions) {
-    const agent = options.agent
-    const agentInput = options.input
-    const result = await run(agent, agentInput)
-    
+export async function runAgent<TOutput extends AgentOutputType>(options: RunAgentOptions<TOutput>) {
+    const result = await run(options.agent, options.input)
     return result.finalOutput
 }
 

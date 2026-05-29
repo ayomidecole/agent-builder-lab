@@ -1,5 +1,6 @@
 import { Agent } from "@openai/agents"
 import classifyAgentIdea from "../tools/classifyAgentIdea.js"
+import { AgentDesignBriefSchema } from "../schemas/agentDesignBrief.js"
 
 
 const agentBuilderV0 = new Agent({
@@ -24,7 +25,8 @@ const agentBuilderV0 = new Agent({
 
     Keep the brief practical and engineering-focused.
     Do not write implementation code yet.`,
-    tools: [classifyAgentIdea]
+    tools: [classifyAgentIdea],
+    outputType: AgentDesignBriefSchema,
 })
 
 export default agentBuilderV0

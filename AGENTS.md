@@ -27,6 +27,8 @@ For each step, prefer this structure:
 
 When assigning implementation work, give hints, resources, and constraints so the learner is not flying blind, but do not provide a full finished implementation unless asked.
 
+Observed learning style: prefer one file, one concept, one acceptance check at a time. Use teacher judgment to choose the right amount of scaffold: partial hints when the learner can reason through it, fuller scaffolds when a step has many moving parts, and full implementation when explicitly asked or when the detail is boring boilerplate. Emphasize boundaries, data flow, and how to verify the step worked.
+
 Keep output concise unless the user asks for detail.
 
 ## Project Scope

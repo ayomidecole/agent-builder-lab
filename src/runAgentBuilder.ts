@@ -1,5 +1,6 @@
 import { runAgent } from "./harness/runAgent.js"
 import agentBuilderV0 from "./agents/agentBuilderAgent.js"
+import { askForApproval } from "./review/askForApproval.js"
 
 if (!process.env.OPENAI_API_KEY) {
     console.error("Missing OPENAI_API_KEY. Export it before running npm run agent-builder.")
@@ -14,3 +15,12 @@ const output = await runAgent({
 })
 
 console.log(output)
+
+const approved = await askForApproval()
+
+if (!approved) {
+  console.log("Brief rejected.")
+  process.exit(0)
+}
+
+console.log("Brief approved.")

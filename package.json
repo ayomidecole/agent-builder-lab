@@ -18,8 +18,10 @@
   "author": "Ayomide Aremu-Cole",
   "license": "MIT",
   "dependencies": {
+    "@hono/node-server": "^2.0.4",
     "@openai/agents": "^0.11.5",
     "dotenv": "^17.4.2",
+    "hono": "^4.12.25",
     "zod": "^4.4.3"
   },
   "devDependencies": {

@@ -8,18 +8,26 @@ The project is organized around a simple agent workflow:
 user idea
 -> Agent Builder Agent creates a structured agent spec
 -> Critic Agent reviews the spec
--> human approves or rejects the result
 -> traces and evals help us inspect behavior
+```
+
+There are currently two ways to run the workflow:
+
+```text
+CLI: user idea -> spec -> critique -> human approval
+API: POST /agent-spec -> spec + critique JSON response
 ```
 
 Important entry points:
 
 - `smoke.ts`: tiny SDK wiring check.
 - `runAgentBuilder.ts`: CLI workflow for running the builder, critic, and approval gate.
+- `api/server.ts`: Hono HTTP API exposing the builder + critic workflow.
 
 Subdirectories:
 
 - `agents/`: agent definitions and instructions.
+- `api/`: HTTP server and API routes.
 - `tools/`: callable TypeScript functions agents can use.
 - `schemas/`: Zod schemas and inferred TypeScript types.
 - `harness/`: reusable execution wrapper for running agents.

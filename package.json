@@ -7,7 +7,8 @@
   "scripts": {
     "smoke": "tsx src/smoke.ts",
     "agent-builder": "tsx src/runAgentBuilder.ts",
-    "eval": "tsx src/evals/runAgentBuilderEvals.ts"
+    "eval": "tsx src/evals/runAgentBuilderEvals.ts",
+    "api": "tsx src/api/server.ts"
   },
   "keywords": [
     "agents",

@@ -66,3 +66,5 @@ Keep `src/smoke.ts` as a diagnostic SDK wiring check, separate from real product
 Use `.agent-lab-state.md` as gitignored working memory for the current step, status, decisions, and next action.
 
 At the start of each new step, read `.agent-lab-state.md` before giving guidance.
+
+After each completed step, audit the `src/**/README.md` files and update them if the source directory responsibilities, files, or workflow changed.

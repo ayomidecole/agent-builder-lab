@@ -1,14 +1,14 @@
 # Web Frontend
 
-This directory contains the Nuxt UI frontend for Agent Builder Lab.
+This directory contains the thin Nuxt UI frontend for Agent Builder Lab.
 
-The frontend is intentionally thin:
+The frontend is intentionally thin and mainly exists to test the agent-builder workflow through a browser:
 
 - render the agent idea form
 - call the existing Hono API at `POST /agent-spec`
 - display the structured spec and structured critique
 
-The agent system still lives in `src/`. Nuxt is the product interface, not the agent runtime.
+The agent system still lives in `src/`. Nuxt is the browser interface, not the agent runtime.
 
 ## Local Development
 

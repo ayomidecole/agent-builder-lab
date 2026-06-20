@@ -69,7 +69,7 @@ The project currently includes:
 - eval cases and an eval runner
 - a CLI flow with a human approval gate
 - a Hono HTTP API with `GET /health` and `POST /agent-spec`
-- a Nuxt UI frontend served by the API at `/`
+- a thin Nuxt UI frontend for testing the agent-builder workflow, served by the API at `/`
 - a Dockerfile for running the API and frontend in one container
 
 ## Common Commands
@@ -80,6 +80,7 @@ npm run agent-builder
 npm run eval
 npm run api
 npm run web:dev
+npm run build:web
 npm run build
 npm start
 ```

@@ -32,6 +32,8 @@ http://localhost:3001
 
 In dev, the frontend calls the API at `http://localhost:3000`.
 
+Use this workflow while changing UI. It hot-reloads frontend edits and avoids rebuilding Docker after every small visual tweak.
+
 ## Production Build
 
 The root build command compiles both layers:
@@ -52,3 +54,17 @@ web/.output/public
 ```
 
 The production Hono server serves that directory at `/`.
+
+## Docker Check
+
+When you want to verify the same path used for deployment, run:
+
+```bash
+npm run docker:refresh
+```
+
+This rebuilds the Docker image and starts the app at:
+
+```text
+http://localhost:3000
+```

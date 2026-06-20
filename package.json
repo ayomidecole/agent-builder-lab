@@ -12,7 +12,10 @@
     "web:dev": "nuxt dev web --port 3001",
     "build:web": "nuxt generate web",
     "build": "tsc && npm run build:web",
-    "start": "node dist/src/api/server.js"
+    "start": "node dist/src/api/server.js",
+    "docker:build": "docker build -t agent-builder-lab .",
+    "docker:run": "docker run --rm -p 3000:3000 -e OPENAI_API_KEY=\"$OPENAI_API_KEY\" agent-builder-lab",
+    "docker:refresh": "docker build -t agent-builder-lab . && docker run --rm -p 3000:3000 -e OPENAI_API_KEY=\"$OPENAI_API_KEY\" agent-builder-lab"
   },
   "keywords": [
     "agents",

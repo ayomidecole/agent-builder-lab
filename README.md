@@ -83,6 +83,9 @@ npm run web:dev
 npm run build:web
 npm run build
 npm start
+npm run docker:build
+npm run docker:run
+npm run docker:refresh
 ```
 
 Local frontend development uses two terminals:
@@ -104,9 +107,10 @@ npm start
 Docker:
 
 ```bash
-docker build -t agent-builder-lab .
-docker run --rm -p 3000:3000 -e OPENAI_API_KEY="$OPENAI_API_KEY" agent-builder-lab
+npm run docker:refresh
 ```
+
+`docker:refresh` rebuilds the image and then starts the container. Use it when you want to verify the production Docker path.
 
 After starting the API, open:
 

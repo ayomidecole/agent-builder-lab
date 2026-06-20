@@ -15,16 +15,16 @@ body {
 }
 
 .shell-panel {
-  border: 1px solid rgb(15 23 42);
-  border-radius: 0;
+  border: 1px solid rgb(203 213 225);
+  border-radius: 1rem;
   overflow: hidden;
 }
 
 .command-line {
   align-items: center;
-  background: rgb(15 23 42);
-  border-bottom: 1px solid rgb(15 23 42);
-  color: rgb(248 250 252);
+  background: rgb(248 250 252);
+  border-bottom: 1px solid rgb(226 232 240);
+  color: rgb(51 65 85);
   display: flex;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem;
@@ -38,7 +38,23 @@ body {
 }
 
 .shell-panel textarea {
-  border-radius: 0;
+  border-radius: 0.75rem;
+}
+
+.idea-chip {
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.idea-chip:hover,
+.idea-chip:focus-visible {
+  background: rgb(209 250 229);
+  color: rgb(6 95 70);
+  box-shadow: 0 8px 20px rgb(15 23 42 / 0.08);
+  transform: translateY(-1px);
 }
 
 .spec-document {
@@ -110,6 +126,6 @@ body {
 }
 
 .spec-document .critique {
-  border-left: 3px solid rgb(124 58 237);
+  border-left: 3px solid rgb(4 120 87);
   padding-left: 1.25rem;
 }

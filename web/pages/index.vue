@@ -110,13 +110,18 @@ const exportJson = () => {
 
 <template>
   <main class="min-h-screen bg-white text-slate-900">
-    <header class="flex h-16 items-center justify-between border-b border-slate-100 px-5 md:px-10">
-      <div class="font-mono text-sm text-slate-900">
-        <span class="text-slate-400">~/</span>agent-builder-lab
+    <header class="flex h-16 items-center justify-between border-b border-slate-200 px-5 md:px-10">
+      <div class="flex h-full items-center">
+        <div class="mr-4 grid size-7 place-items-center bg-slate-950 text-white">
+          <span class="block size-2 bg-white"></span>
+        </div>
+        <div class="font-mono text-sm text-slate-900">
+          <span class="text-slate-400">~/</span>agent-builder-lab
+        </div>
       </div>
 
       <div class="flex items-center gap-2">
-        <UBadge color="neutral" variant="soft" class="rounded-full">
+        <UBadge color="primary" variant="soft" class="rounded-none">
           {{ statusLabel }}
         </UBadge>
         <UButton
@@ -133,9 +138,10 @@ const exportJson = () => {
         <UButton
           v-if="result"
           type="button"
-          color="neutral"
+          color="primary"
           variant="solid"
           size="sm"
+          class="rounded-none"
           @click="exportJson"
         >
           <Download class="size-4" />
@@ -148,7 +154,7 @@ const exportJson = () => {
       <form class="space-y-5" @submit.prevent="submitIdea">
         <div class="space-y-3">
           <h1 class="text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">
-            Build an agent spec
+            Build an agent <span class="text-primary-600">spec</span>
           </h1>
           <p class="max-w-2xl text-lg leading-8 text-slate-600">
             Write the idea, run the builder, inspect the structured output.
@@ -159,6 +165,7 @@ const exportJson = () => {
           <div class="command-line">
             <span class="text-slate-400">$</span>
             <span>agent-builder build --from-idea</span>
+            <span class="ml-auto text-primary-600">v0</span>
           </div>
 
           <UFormField label="stdin">
@@ -183,6 +190,7 @@ const exportJson = () => {
             color="neutral"
             variant="soft"
             size="sm"
+            class="rounded-none"
             @click="idea = example"
           >
             {{ example }}
@@ -205,6 +213,7 @@ const exportJson = () => {
             type="submit"
             color="neutral"
             size="lg"
+            class="rounded-none bg-slate-950 text-white hover:bg-slate-800"
             :disabled="isLoading"
           >
             {{ isLoading ? 'running' : 'run builder' }}

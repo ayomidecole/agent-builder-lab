@@ -15,16 +15,16 @@ body {
 }
 
 .shell-panel {
-  border: 1px solid rgb(226 232 240);
-  border-radius: 0.75rem;
+  border: 1px solid rgb(15 23 42);
+  border-radius: 0;
   overflow: hidden;
 }
 
 .command-line {
   align-items: center;
-  background: rgb(248 250 252);
-  border-bottom: 1px solid rgb(226 232 240);
-  color: rgb(51 65 85);
+  background: rgb(15 23 42);
+  border-bottom: 1px solid rgb(15 23 42);
+  color: rgb(248 250 252);
   display: flex;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem;
@@ -34,15 +34,15 @@ body {
 }
 
 .shell-panel [data-slot="root"] {
-  padding: 1rem;
+  padding: 1.125rem;
 }
 
 .shell-panel textarea {
-  border-radius: 0.5rem;
+  border-radius: 0;
 }
 
 .spec-document {
-  border-top: 1px solid rgb(241 245 249);
+  border-top: 1px solid rgb(226 232 240);
   padding-top: 2.5rem;
   color: rgb(51 65 85);
 }
@@ -110,6 +110,6 @@ body {
 }
 
 .spec-document .critique {
-  border-left: 2px solid rgb(15 23 42);
+  border-left: 3px solid rgb(124 58 237);
   padding-left: 1.25rem;
 }

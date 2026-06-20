@@ -8,7 +8,9 @@
     "smoke": "tsx src/smoke.ts",
     "agent-builder": "tsx src/runAgentBuilder.ts",
     "eval": "tsx src/evals/runAgentBuilderEvals.ts",
-    "api": "tsx src/api/server.ts"
+    "api": "tsx src/api/server.ts",
+    "build": "tsc",
+    "start": "node dist/src/api/server.js"
   },
   "keywords": [
     "agents",

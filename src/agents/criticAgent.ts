@@ -1,4 +1,5 @@
 import { Agent } from "@openai/agents"
+import { CriticReviewSchema } from "../schemas/criticReview.js"
 
 const criticAgent = new Agent({
     name: "Critic Agent",
@@ -21,14 +22,16 @@ const criticAgent = new Agent({
     Do not write implementation code.
     If a section is acceptable, say so briefly and move on.
 
-    Return your review with these sections:
+    Return a review that matches the configured output schema.
 
-    1. Biggest Concern
-    2. Missing Risks
-    3. Workflow Gaps
-    4. Tooling Gaps
-    5. Eval Improvements
-    6. Recommended Next Revision`
+    Field guidance:
+    - biggestConcern: the single most important weakness or approval risk.
+    - missingRisks: risks the brief missed or underexplained.
+    - workflowGaps: vague, missing, or unsafe workflow steps.
+    - toolingGaps: missing tools, integrations, or implementation dependencies.
+    - evalImprovements: concrete ways to make the eval plan stronger.
+    - recommendedNextRevision: specific changes the builder should make next.`,
+    outputType: CriticReviewSchema
 })
 
 export default criticAgent

@@ -69,7 +69,8 @@ The project currently includes:
 - eval cases and an eval runner
 - a CLI flow with a human approval gate
 - a Hono HTTP API with `GET /health` and `POST /agent-spec`
-- a Dockerfile for running the API in a container
+- a Nuxt UI frontend served by the API at `/`
+- a Dockerfile for running the API and frontend in one container
 
 ## Common Commands
 
@@ -78,6 +79,23 @@ npm run smoke
 npm run agent-builder
 npm run eval
 npm run api
+npm run web:dev
+npm run build
+npm start
+```
+
+Local frontend development uses two terminals:
+
+```bash
+npm run api
+npm run web:dev
+```
+
+The Nuxt UI frontend runs at `http://localhost:3001` and calls the API at `http://localhost:3000`.
+
+Production mode serves the generated Nuxt UI frontend from the Hono API server:
+
+```bash
 npm run build
 npm start
 ```
@@ -87,6 +105,12 @@ Docker:
 ```bash
 docker build -t agent-builder-lab .
 docker run --rm -p 3000:3000 -e OPENAI_API_KEY="$OPENAI_API_KEY" agent-builder-lab
+```
+
+After starting the API, open:
+
+```text
+http://localhost:3000/
 ```
 
 ## Working Agreement

@@ -9,7 +9,9 @@
     "agent-builder": "tsx src/runAgentBuilder.ts",
     "eval": "tsx src/evals/runAgentBuilderEvals.ts",
     "api": "tsx src/api/server.ts",
-    "build": "tsc",
+    "web:dev": "nuxt dev web --port 3001",
+    "build:web": "nuxt generate web",
+    "build": "tsc && npm run build:web",
     "start": "node dist/src/api/server.js"
   },
   "keywords": [
@@ -22,9 +24,14 @@
   "license": "MIT",
   "dependencies": {
     "@hono/node-server": "^2.0.5",
+    "@iconify-json/lucide": "^1.2.114",
+    "@lucide/vue": "^1.21.0",
+    "@nuxt/ui": "^4.9.0",
     "@openai/agents": "^0.11.5",
     "dotenv": "^17.4.2",
     "hono": "^4.12.26",
+    "nuxt": "^4.4.8",
+    "tailwindcss": "^4.3.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {

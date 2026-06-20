@@ -15,7 +15,7 @@ There are currently two ways to run the workflow:
 
 ```text
 CLI: user idea -> spec -> critique -> human approval
-API: POST /agent-spec -> spec + critique JSON response
+API/frontend: user idea -> POST /agent-spec -> spec + critique JSON response
 ```
 
 Important entry points:
@@ -23,6 +23,7 @@ Important entry points:
 - `smoke.ts`: tiny SDK wiring check.
 - `runAgentBuilder.ts`: CLI workflow for running the builder, critic, and approval gate.
 - `api/server.ts`: Hono HTTP API exposing the builder + critic workflow.
+- `../web/`: Nuxt UI frontend generated during `npm run build` and served by the API.
 
 Subdirectories:
 

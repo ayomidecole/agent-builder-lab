@@ -1,5 +1,7 @@
 node_modules
 dist
+web/.nuxt
+web/.output
 traces
 .env
 .git

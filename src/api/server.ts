@@ -1,11 +1,18 @@
 import { serve } from '@hono/node-server';
+import { serveStatic } from '@hono/node-server/serve-static';
 import { Hono } from 'hono';
+import { cors } from 'hono/cors';
 import agentBuilderV0 from '../agents/agentBuilderAgent.js';
 import criticAgent from '../agents/criticAgent.js';
 import runAgent  from '../harness/runAgent.js';
 
 
 const app = new Hono();
+
+app.use('/agent-spec', cors());
+app.use('/_nuxt/*', serveStatic({ root: './web/.output/public' }));
+app.get('/_payload.json', serveStatic({ path: './web/.output/public/_payload.json' }));
+app.get('/', serveStatic({ path: './web/.output/public/index.html' }));
 
 const generateAgentSpec = async (idea: string) => {
     if (!idea.trim()) {

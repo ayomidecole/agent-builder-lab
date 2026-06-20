@@ -11,6 +11,18 @@ Current server:
 Current routes:
 
 ```text
+GET /
+```
+
+Serves the generated Nuxt UI frontend from `web/.output/public/index.html`.
+
+```text
+GET /_nuxt/*
+```
+
+Serves generated Nuxt frontend assets from `web/.output/public`.
+
+```text
 GET /health
 ```
 
@@ -49,6 +61,8 @@ Returns:
 The route validates that `idea` is a non-empty string, runs Agent Builder Agent v0, then runs Critic Agent against the generated spec.
 
 The API does not perform human approval yet. Human approval currently exists in the CLI workflow.
+
+`POST /agent-spec` has CORS enabled so the Nuxt dev server on port `3001` can call the API on port `3000`. In production, the frontend and API are same-origin.
 
 Development command:
 

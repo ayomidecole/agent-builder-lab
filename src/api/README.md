@@ -35,10 +35,32 @@ Returns:
 ```json
 {
   "spec": {},
-  "critique": "..."
+  "critique": {
+    "biggestConcern": "...",
+    "missingRisks": [],
+    "workflowGaps": [],
+    "toolingGaps": [],
+    "evalImprovements": [],
+    "recommendedNextRevision": []
+  }
 }
 ```
 
 The route validates that `idea` is a non-empty string, runs Agent Builder Agent v0, then runs Critic Agent against the generated spec.
 
 The API does not perform human approval yet. Human approval currently exists in the CLI workflow.
+
+Development command:
+
+```bash
+npm run api
+```
+
+Production command after build:
+
+```bash
+npm run build
+npm start
+```
+
+Docker runs the production command inside the container.

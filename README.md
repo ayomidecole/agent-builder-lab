@@ -57,6 +57,37 @@ deployment checklist
 11. Agent Builder
 12. API
 13. Deployment
+14. Production Observability
+
+## Current State
+
+The project currently includes:
+
+- a structured Agent Builder Agent that turns rough ideas into buildable agent specs
+- a Critic Agent that returns structured reviews of those specs
+- a reusable agent harness with local JSON tracing
+- eval cases and an eval runner
+- a CLI flow with a human approval gate
+- a Hono HTTP API with `GET /health` and `POST /agent-spec`
+- a Dockerfile for running the API in a container
+
+## Common Commands
+
+```bash
+npm run smoke
+npm run agent-builder
+npm run eval
+npm run api
+npm run build
+npm start
+```
+
+Docker:
+
+```bash
+docker build -t agent-builder-lab .
+docker run --rm -p 3000:3000 -e OPENAI_API_KEY="$OPENAI_API_KEY" agent-builder-lab
+```
 
 ## Working Agreement
 

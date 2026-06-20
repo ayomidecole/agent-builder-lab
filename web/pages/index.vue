@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CircleAlert, Copy, Download, Sparkles } from '@lucide/vue';
+import { CircleAlert, Copy, Download } from '@lucide/vue';
 
 type ToolSpec = {
   name: string;
@@ -112,7 +112,7 @@ const exportJson = () => {
   <main class="min-h-screen bg-white text-slate-900">
     <header class="flex h-16 items-center justify-between border-b border-slate-100 px-5 md:px-10">
       <div class="font-mono text-sm text-slate-900">
-        <span class="text-slate-400">#</span> agent builder lab
+        <span class="text-slate-400">~/</span>agent-builder-lab
       </div>
 
       <div class="flex items-center gap-2">
@@ -144,30 +144,38 @@ const exportJson = () => {
       </div>
     </header>
 
-    <section class="mx-auto max-w-3xl px-5 pb-24 pt-24 md:px-8">
+    <section class="mx-auto max-w-3xl px-5 pb-24 pt-20 md:px-8">
       <form class="space-y-5" @submit.prevent="submitIdea">
         <div class="space-y-3">
           <h1 class="text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">
-            Agent spec builder
+            Build an agent spec
           </h1>
           <p class="max-w-2xl text-lg leading-8 text-slate-600">
-            Rough idea in. Structured spec and critique out.
+            Write the idea, run the builder, inspect the structured output.
           </p>
         </div>
 
-        <UFormField label="Idea">
-          <UTextarea
-            v-model="idea"
-            autoresize
-            :rows="7"
-            size="xl"
-            placeholder="I want an agent that..."
-            class="w-full"
-            :ui="{ base: 'font-mono leading-7' }"
-          />
-        </UFormField>
+        <div class="shell-panel">
+          <div class="command-line">
+            <span class="text-slate-400">$</span>
+            <span>agent-builder build --from-idea</span>
+          </div>
+
+          <UFormField label="stdin">
+            <UTextarea
+              v-model="idea"
+              autoresize
+              :rows="7"
+              size="xl"
+              placeholder="I want an agent that..."
+              class="w-full"
+              :ui="{ base: 'font-mono leading-7' }"
+            />
+          </UFormField>
+        </div>
 
         <div class="flex flex-wrap gap-2">
+          <span class="font-mono text-sm leading-8 text-slate-400">try:</span>
           <UButton
             v-for="example in exampleIdeas"
             :key="example"
@@ -199,8 +207,7 @@ const exportJson = () => {
             size="lg"
             :disabled="isLoading"
           >
-            <Sparkles class="size-4" />
-            {{ isLoading ? 'Generating' : 'Generate spec' }}
+            {{ isLoading ? 'running' : 'run builder' }}
           </UButton>
         </div>
       </form>
@@ -214,13 +221,13 @@ const exportJson = () => {
         </div>
 
         <div v-else-if="!result" class="border-t border-slate-100 pt-10 text-slate-400">
-          <p class="font-mono text-sm">Generated spec will appear here.</p>
+          <p class="font-mono text-sm">stdout is empty. run builder to generate a spec.</p>
         </div>
 
         <article v-else class="spec-document">
           <div class="mb-10">
             <p class="mb-3 font-mono text-sm text-slate-400">
-              {{ result.spec.category }}
+              stdout / {{ result.spec.category }}
             </p>
             <h2>{{ result.spec.agentName }}</h2>
             <p class="lead">{{ result.spec.purpose }}</p>

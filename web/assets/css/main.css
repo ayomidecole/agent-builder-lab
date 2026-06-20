@@ -7,12 +7,82 @@
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent 34rem),
-    radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 30rem),
-    #f8fafc;
+  background: #ffffff;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.spec-document {
+  border-top: 1px solid rgb(241 245 249);
+  padding-top: 2.5rem;
+  color: rgb(51 65 85);
+}
+
+.spec-document section {
+  margin-top: 2.75rem;
+}
+
+.spec-document h2 {
+  color: rgb(15 23 42);
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.spec-document h3 {
+  color: rgb(30 41 59);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+}
+
+.spec-document h4 {
+  color: rgb(30 41 59);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+}
+
+.spec-document p,
+.spec-document li {
+  color: rgb(51 65 85);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.spec-document .lead {
+  color: rgb(51 65 85);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.75;
+  margin-top: 1.25rem;
+}
+
+.spec-document ol,
+.spec-document ul {
+  padding-left: 1.25rem;
+}
+
+.spec-document ol {
+  list-style: decimal;
+}
+
+.spec-document ul {
+  list-style: disc;
+}
+
+.spec-document li + li {
+  margin-top: 0.55rem;
+}
+
+.spec-document .critique {
+  border-left: 2px solid rgb(15 23 42);
+  padding-left: 1.25rem;
 }

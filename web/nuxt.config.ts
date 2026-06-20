@@ -15,11 +15,6 @@ export default defineNuxtConfig({
       routes: ['/']
     }
   },
-  icon: {
-    serverBundle: {
-      collections: ['lucide']
-    }
-  },
   ui: {
     fonts: false,
     theme: {

@@ -16,13 +16,12 @@ export default defineNuxtConfig({
     }
   },
   colorMode: {
-    preference: 'light',
+    preference: 'system',
     fallback: 'light',
-    storageKey: 'nuxt-color-mode'
+    storageKey: 'agent-builder-color-mode'
   },
   ui: {
     fonts: false,
-    colorMode: false,
     theme: {
       colors: ['primary', 'neutral', 'success', 'warning', 'error']
     }

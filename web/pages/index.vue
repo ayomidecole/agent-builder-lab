@@ -109,11 +109,11 @@ const exportJson = () => {
 </script>
 
 <template>
-  <main class="min-h-screen bg-white text-slate-900">
-    <header class="flex h-16 items-center justify-between border-b border-slate-100 px-5 md:px-10">
+  <main class="app-shell min-h-screen">
+    <header class="app-header flex h-16 items-center justify-between px-5 md:px-10">
       <div class="flex h-full items-center">
-        <div class="font-mono text-sm text-slate-900">
-          <span class="text-slate-400">~/</span>agent-builder-lab
+        <div class="app-brand font-mono text-sm">
+          <span class="app-brand-prefix">~/</span>agent-builder-lab
         </div>
       </div>
 
@@ -149,20 +149,20 @@ const exportJson = () => {
     <section class="mx-auto max-w-3xl px-5 pb-24 pt-20 md:px-8">
       <form class="space-y-5" @submit.prevent="submitIdea">
         <div class="space-y-3">
-          <h1 class="text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">
-            Build an agent <span class="text-emerald-700">spec</span>
+          <h1 class="app-title text-4xl font-semibold tracking-tight md:text-5xl">
+            Build an agent <span class="app-title-accent">spec</span>
           </h1>
-          <p class="max-w-2xl text-lg leading-8 text-slate-600">
+          <p class="app-subtitle max-w-2xl text-lg leading-8">
             Write the idea, run the builder, inspect the structured output.
           </p>
         </div>
 
         <div class="shell-panel">
           <div class="command-line">
-            <span class="text-slate-400">$</span>
+            <span class="command-prompt">$</span>
             <span>agent-builder build --from-idea</span>
             <span class="command-cursor" aria-hidden="true"></span>
-            <span class="ml-auto text-emerald-700">v0</span>
+            <span class="command-version ml-auto">v0</span>
           </div>
 
           <UFormField label="stdin">
@@ -179,7 +179,7 @@ const exportJson = () => {
         </div>
 
         <div class="flex flex-wrap gap-2">
-          <span class="font-mono text-sm leading-8 text-slate-400">try:</span>
+          <span class="try-label font-mono text-sm leading-8">try:</span>
           <UButton
             v-for="example in exampleIdeas"
             :key="example"
@@ -210,7 +210,7 @@ const exportJson = () => {
             type="submit"
             color="neutral"
             size="lg"
-            class="run-button bg-slate-950 text-white hover:bg-slate-950"
+            class="run-button"
             :disabled="isLoading"
           >
             {{ isLoading ? 'running' : 'run builder' }}
@@ -226,13 +226,13 @@ const exportJson = () => {
           <USkeleton class="h-28 w-full" />
         </div>
 
-        <div v-else-if="!result" class="border-t border-slate-100 pt-10 text-slate-400">
-          <p class="font-mono text-sm">stdout is empty. run builder to generate a spec.</p>
+        <div v-else-if="!result" class="empty-output pt-10">
+          <p class="empty-output-text font-mono text-sm">stdout is empty. run builder to generate a spec.</p>
         </div>
 
         <article v-else class="spec-document">
           <div class="mb-10">
-            <p class="mb-3 font-mono text-sm text-slate-400">
+            <p class="stdout-label mb-3 font-mono text-sm">
               stdout / {{ result.spec.category }}
             </p>
             <h2>{{ result.spec.agentName }}</h2>
@@ -262,7 +262,7 @@ const exportJson = () => {
             <h3>Tools</h3>
             <div class="space-y-4">
               <div v-for="tool in result.spec.tools" :key="tool.name">
-                <p class="font-semibold text-slate-950">{{ tool.name }}</p>
+                <p class="detail-heading font-semibold">{{ tool.name }}</p>
                 <p>{{ tool.purpose }}</p>
               </div>
             </div>
@@ -272,9 +272,9 @@ const exportJson = () => {
             <h3>Human review gates</h3>
             <div class="space-y-4">
               <div v-for="gate in result.spec.humanReviewGates" :key="gate.name">
-                <p class="font-semibold text-slate-950">{{ gate.name }}</p>
+                <p class="detail-heading font-semibold">{{ gate.name }}</p>
                 <p>{{ gate.when }}</p>
-                <p class="text-sm text-slate-500">{{ gate.decision }}</p>
+                <p class="detail-note text-sm">{{ gate.decision }}</p>
               </div>
             </div>
           </section>
@@ -283,7 +283,7 @@ const exportJson = () => {
             <h3>Implementation plan</h3>
             <ol>
               <li v-for="item in result.spec.implementationPlan" :key="item.step">
-                <span class="font-semibold text-slate-950">{{ item.step }}:</span>
+                <span class="detail-heading font-semibold">{{ item.step }}:</span>
                 {{ item.outcome }}
               </li>
             </ol>

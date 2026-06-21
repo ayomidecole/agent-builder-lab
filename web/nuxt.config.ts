@@ -15,8 +15,14 @@ export default defineNuxtConfig({
       routes: ['/']
     }
   },
+  colorMode: {
+    preference: 'light',
+    fallback: 'light',
+    storageKey: 'nuxt-color-mode'
+  },
   ui: {
     fonts: false,
+    colorMode: false,
     theme: {
       colors: ['primary', 'neutral', 'success', 'warning', 'error']
     }

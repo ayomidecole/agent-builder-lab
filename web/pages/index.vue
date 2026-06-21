@@ -210,7 +210,7 @@ const exportJson = () => {
             type="submit"
             color="neutral"
             size="lg"
-            class="bg-slate-950 text-white hover:bg-slate-800"
+            class="run-button bg-slate-950 text-white hover:bg-slate-950"
             :disabled="isLoading"
           >
             {{ isLoading ? 'running' : 'run builder' }}

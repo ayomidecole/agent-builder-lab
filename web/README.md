@@ -55,6 +55,20 @@ web/.output/public
 
 The production Hono server serves that directory at `/`.
 
+## Deployed Frontend
+
+The deployed Render service hosts the frontend and API together:
+
+```text
+https://agent-builder-lab.onrender.com/
+```
+
+The browser loads the Nuxt static frontend from the Hono server. When the form submits, it calls the same origin:
+
+```text
+POST /agent-spec
+```
+
 ## Docker Check
 
 When you want to verify the same path used for deployment, run:

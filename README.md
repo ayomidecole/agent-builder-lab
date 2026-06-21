@@ -71,6 +71,19 @@ The project currently includes:
 - a Hono HTTP API with `GET /health` and `POST /agent-spec`
 - a thin Nuxt UI frontend for testing the agent-builder workflow, served by the API at `/`
 - a Dockerfile for running the API and frontend in one container
+- a deployed Render web service running that same Dockerized API/UI
+
+Deployed app:
+
+```text
+https://agent-builder-lab.onrender.com/
+```
+
+Health check:
+
+```text
+https://agent-builder-lab.onrender.com/health
+```
 
 ## Common Commands
 
@@ -117,6 +130,26 @@ After starting the API, open:
 ```text
 http://localhost:3000/
 ```
+
+## Deployment
+
+The production deployment currently uses a single Dockerized Render Web Service.
+
+Render builds the root `Dockerfile`, runs `npm run build` during the image build, then starts the container with:
+
+```bash
+npm start
+```
+
+That starts the Hono server from `dist/src/api/server.js`. The same server handles API routes and serves the generated Nuxt frontend from `web/.output/public`.
+
+Render must be configured with:
+
+```text
+OPENAI_API_KEY
+```
+
+Do not commit `.env` files or API keys. Local Docker passes the key in with `-e OPENAI_API_KEY="$OPENAI_API_KEY"`; Render stores it as an environment variable.
 
 ## Working Agreement
 

@@ -8,6 +8,12 @@ Current server:
 
 - `server.ts`: Hono server with health and agent-spec routes.
 
+The deployed Render service is:
+
+```text
+https://agent-builder-lab.onrender.com/
+```
+
 Current routes:
 
 ```text
@@ -78,3 +84,5 @@ npm start
 ```
 
 Docker runs the production command inside the container.
+
+The Render deployment runs the same Docker path: build the image from the root `Dockerfile`, inject `OPENAI_API_KEY`, and route traffic to the port exposed by the Hono server.

@@ -18,6 +18,17 @@ body {
   border: 1px solid rgb(203 213 225);
   border-radius: 1rem;
   overflow: hidden;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.shell-panel:hover,
+.shell-panel:focus-within {
+  border-color: rgb(148 163 184);
+  box-shadow:
+    0 0 0 4px rgb(15 23 42 / 0.025),
+    0 14px 34px rgb(15 23 42 / 0.045);
 }
 
 .command-line {
@@ -31,6 +42,35 @@ body {
   gap: 0.5rem;
   line-height: 1.25rem;
   padding: 0.75rem 1rem;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.shell-panel:hover .command-line,
+.shell-panel:focus-within .command-line {
+  background: rgb(241 245 249);
+  color: rgb(30 41 59);
+}
+
+.command-cursor {
+  background: rgb(4 120 87);
+  display: inline-block;
+  height: 1rem;
+  opacity: 0.25;
+  transform: scaleY(0.55);
+  transform-origin: center;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  width: 0.45rem;
+}
+
+.shell-panel:hover .command-cursor,
+.shell-panel:focus-within .command-cursor {
+  animation: terminal-cursor-pulse 1.25s ease-in-out infinite;
+  opacity: 0.72;
+  transform: scaleY(1);
 }
 
 .shell-panel [data-slot="root"] {
@@ -39,6 +79,30 @@ body {
 
 .shell-panel textarea {
   border-radius: 0.75rem;
+}
+
+.shell-panel textarea:focus,
+.shell-panel textarea:focus-visible {
+  box-shadow: none;
+  outline: none;
+}
+
+.shell-panel [data-slot="base"]:focus,
+.shell-panel [data-slot="base"]:focus-visible {
+  box-shadow: none;
+  outline: none;
+  --tw-ring-color: rgb(203 213 225);
+}
+
+@keyframes terminal-cursor-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+  }
+
+  50% {
+    opacity: 0.24;
+  }
 }
 
 .idea-chip {

@@ -161,6 +161,7 @@ const exportJson = () => {
           <div class="command-line">
             <span class="text-slate-400">$</span>
             <span>agent-builder build --from-idea</span>
+            <span class="command-cursor" aria-hidden="true"></span>
             <span class="ml-auto text-emerald-700">v0</span>
           </div>
 

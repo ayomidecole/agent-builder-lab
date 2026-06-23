@@ -1,5 +1,6 @@
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
+import crypto from 'node:crypto';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import agentBuilderV0 from '../agents/agentBuilderAgent.js';
@@ -8,6 +9,26 @@ import runAgent  from '../harness/runAgent.js';
 
 
 const app = new Hono();
+
+app.use('*', async (c, next) => {
+    const requestId = crypto.randomUUID()
+    const startedAt = Date.now()
+
+    c.header('x-request-id', requestId)
+
+    await next()
+
+    const durationMs = Date.now() - startedAt
+
+    console.log(JSON.stringify({
+        type: 'http_request',
+        requestId,
+        method: c.req.method,
+        path: c.req.path,
+        status: c.res.status,
+        durationMs
+    }))
+})
 
 app.use('/agent-spec', cors());
 app.use('/_nuxt/*', serveStatic({ root: './web/.output/public' }));

@@ -19,15 +19,19 @@ app.use('*', async (c, next) => {
     await next()
 
     const durationMs = Date.now() - startedAt
+    const isSuccessfulHealthCheck = c.req.method === 'GET' && c.req.path === '/health' && c.res.status < 400
+    const isFavicon = c.req.method === 'GET' && c.req.path === '/favicon.ico'
 
-    console.log(JSON.stringify({
-        type: 'http_request',
-        requestId,
-        method: c.req.method,
-        path: c.req.path,
-        status: c.res.status,
-        durationMs
-    }))
+    if (!isSuccessfulHealthCheck && !isFavicon) {
+        console.log(JSON.stringify({
+            type: 'http_request',
+            requestId,
+            method: c.req.method,
+            path: c.req.path,
+            status: c.res.status,
+            durationMs
+        }))
+    }
 })
 
 app.use('/agent-spec', cors());

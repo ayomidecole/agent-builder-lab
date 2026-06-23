@@ -151,6 +151,40 @@ OPENAI_API_KEY
 
 Do not commit `.env` files or API keys. Local Docker passes the key in with `-e OPENAI_API_KEY="$OPENAI_API_KEY"`; Render stores it as an environment variable.
 
+## Production Observability
+
+The deployed app currently uses lightweight structured logs and a health endpoint.
+
+Production-safe stdout logs:
+
+- `http_request`: request id, method, path, status, and duration
+- `agent_run`: agent name, success/error status, duration, and short error message on failure
+
+Local-only traces:
+
+- detailed agent input/output traces are written to `traces/`
+- `traces/` is gitignored
+- detailed traces are skipped when `NODE_ENV=production`
+
+Production logs should contain metadata, not user content. Do not log:
+
+- full user ideas
+- full generated specs or critiques
+- API keys or auth values
+- raw tool results
+- private customer/email/business data
+
+Monitoring checklist:
+
+- `/health` returns `{"ok":true}`
+- `POST /agent-spec` returns `200` for valid ideas
+- `POST /agent-spec` returns `400` for missing or empty `idea`
+- `http_request` logs show status and latency for API calls
+- `agent_run` logs show which agent is slow or failing
+- Render deploy logs show successful build/startup
+- CI passes `npm ci`, `npm run build`, and `docker build`
+- evals are run before meaningful agent instruction/schema changes
+
 ## Working Agreement
 
 The learner writes the important code by hand.

@@ -8,21 +8,24 @@ type RunAgentOptions<TOutput extends AgentOutputType> = {
 
 export async function runAgent<TOutput extends AgentOutputType>(options: RunAgentOptions<TOutput>) {
     const startedAt = new Date()
+    const shouldWriteLocalTrace = process.env.NODE_ENV !== "production"
 
     try {
         const result = await run(options.agent, options.input)
         const endedAt = new Date()
         const durationMs = endedAt.getTime() - startedAt.getTime()
 
-        await writeTrace({
-            agentName: options.agent.name,
-            input: options.input,
-            startedAt: startedAt.toISOString(),
-            endedAt: endedAt.toISOString(),
-            durationMs,
-            status: "success",
-            output: result.finalOutput
-        })
+        if (shouldWriteLocalTrace) {
+            await writeTrace({
+                agentName: options.agent.name,
+                input: options.input,
+                startedAt: startedAt.toISOString(),
+                endedAt: endedAt.toISOString(),
+                durationMs,
+                status: "success",
+                output: result.finalOutput
+            })
+        }
 
         console.log(JSON.stringify({
             type: "agent_run",
@@ -39,15 +42,17 @@ export async function runAgent<TOutput extends AgentOutputType>(options: RunAgen
 
         const errorMessage = error instanceof Error ? error.message : String(error)
 
-        await writeTrace({
-            agentName: options.agent.name,
-            input: options.input,
-            startedAt: startedAt.toISOString(),
-            endedAt: endedAt.toISOString(),
-            durationMs,
-            status: "error",
-            error: errorMessage
-        })
+        if (shouldWriteLocalTrace) {
+            await writeTrace({
+                agentName: options.agent.name,
+                input: options.input,
+                startedAt: startedAt.toISOString(),
+                endedAt: endedAt.toISOString(),
+                durationMs,
+                status: "error",
+                error: errorMessage
+            })
+        }
 
         console.log(JSON.stringify({
             type: "agent_run",

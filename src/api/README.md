@@ -70,6 +70,27 @@ The API does not perform human approval yet. Human approval currently exists in 
 
 `POST /agent-spec` has CORS enabled so the Nuxt dev server on port `3001` can call the API on port `3000`. In production, the frontend and API are same-origin.
 
+## Request Logging
+
+The API has structured request logging middleware.
+
+Each request gets an `x-request-id` response header and writes one stdout JSON line:
+
+```json
+{
+  "type": "http_request",
+  "requestId": "...",
+  "method": "POST",
+  "path": "/agent-spec",
+  "status": 200,
+  "durationMs": 19094
+}
+```
+
+In local development, these logs appear in the terminal running `npm run api`.
+
+In production, Render captures these stdout logs in the service log view.
+
 Development command:
 
 ```bash

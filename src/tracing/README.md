@@ -8,6 +8,14 @@ Current helper:
 
 - `writeTrace.ts`: writes a JSON trace file to the local `traces/` directory.
 
+`runAgent` only writes detailed trace files when:
+
+```text
+NODE_ENV !== "production"
+```
+
+This keeps detailed input/output traces available for local learning and debugging while avoiding production disk traces with user content.
+
 Trace records currently include:
 
 - agent name
@@ -16,3 +24,5 @@ Trace records currently include:
 - start and end timestamps
 - duration
 - success or error status
+
+Production observability uses stdout metadata logs instead of detailed trace files.

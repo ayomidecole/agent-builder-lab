@@ -12,21 +12,30 @@ export async function runAgent<TOutput extends AgentOutputType>(options: RunAgen
     try {
         const result = await run(options.agent, options.input)
         const endedAt = new Date()
+        const durationMs = endedAt.getTime() - startedAt.getTime()
 
         await writeTrace({
             agentName: options.agent.name,
             input: options.input,
             startedAt: startedAt.toISOString(),
             endedAt: endedAt.toISOString(),
-            durationMs: endedAt.getTime() - startedAt.getTime(),
+            durationMs,
             status: "success",
             output: result.finalOutput
         })
+
+        console.log(JSON.stringify({
+            type: "agent_run",
+            agentName: options.agent.name,
+            status: "success",
+            durationMs
+        }))
 
         return result.finalOutput
         
     } catch (error) {
         const endedAt = new Date()
+        const durationMs = endedAt.getTime() - startedAt.getTime()
 
         const errorMessage = error instanceof Error ? error.message : String(error)
 
@@ -35,10 +44,18 @@ export async function runAgent<TOutput extends AgentOutputType>(options: RunAgen
             input: options.input,
             startedAt: startedAt.toISOString(),
             endedAt: endedAt.toISOString(),
-            durationMs: endedAt.getTime() - startedAt.getTime(),
+            durationMs,
             status: "error",
             error: errorMessage
         })
+
+        console.log(JSON.stringify({
+            type: "agent_run",
+            agentName: options.agent.name,
+            status: "error",
+            durationMs,
+            error: errorMessage
+        }))
 
         throw error
     }
